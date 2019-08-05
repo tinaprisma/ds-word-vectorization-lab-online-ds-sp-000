@@ -38,15 +38,34 @@ To make it easy to read in all of the documents, use a list comprehension to cre
 
 ```python
 filenames = ['song' + str(i) + '.txt' for i in range(1, 21)]
-# filenames
+filenames
 ```
 
-Next, create an empty DataFrame called `songs_df`.  As we read in the songs and store and clean them, we'll store them in this DataFrame.
 
 
-```python
-songs_df = pd.DataFrame()
-```
+
+    ['song1.txt',
+     'song2.txt',
+     'song3.txt',
+     'song4.txt',
+     'song5.txt',
+     'song6.txt',
+     'song7.txt',
+     'song8.txt',
+     'song9.txt',
+     'song10.txt',
+     'song11.txt',
+     'song12.txt',
+     'song13.txt',
+     'song14.txt',
+     'song15.txt',
+     'song16.txt',
+     'song17.txt',
+     'song18.txt',
+     'song19.txt',
+     'song20.txt']
+
+
 
 Next, let's import a single song to see what our text looks like so that we can make sure we clean and tokenize it correctly. 
 
@@ -60,7 +79,7 @@ with open('data/song11.txt') as f:
 ```
 
     ['[Kendrick Lamar:]\n', "Love, let's talk about love\n", 'Is it anything and everything you hoped for?\n', 'Or do the feeling haunt you?\n', 'I know the feeling haunt you\n', '[SZA:]\n', 'This may be the night that my dreams might let me know\n', 'All the stars approach you, all the stars approach you, all the stars approach you\n', 'This may be the night that my dreams might let me know\n', 'All the stars are closer, all the stars are closer, all the stars are closer\n', '[Kendrick Lamar:]\n', "Tell me what you gon' do to me\n", "Confrontation ain't nothin' new to me\n", 'You can bring a bullet, bring a sword, bring a morgue\n', "But you can't bring the truth to me\n", 'Fuck you and all your expectations\n', "I don't even want your congratulations\n", 'I recognize your false confidence\n', 'And calculated promises all in your conversation\n', 'I hate people that feel entitled\n', "Look at me crazy 'cause I ain't invite you\n", 'Oh, you important?\n', "You the moral to the story? You endorsin'?\n", "Motherfucker, I don't even like you\n", "Corrupt a man's heart with a gift\n", "That's how you find out who you dealin' with\n", "A small percentage who I'm buildin' with\n", "I want the credit if I'm losin' or I'm winnin'\n", "On my momma, that's the realest shit\n", "Love, let's talk about love\n", 'Is it anything and everything you hoped for?\n', 'Or do the feeling haunt you?\n', 'I know the feeling haunt you\n', '[SZA:]\n', 'This may be the night that my dreams might let me know\n', 'All the stars approach you, all the stars approach you, all the stars approach you\n', 'This may be the night that my dreams might let me know\n', 'All the stars are closer, all the stars are closer, all the stars are closer\n', 'Skin covered in ego\n', "Get to talkin' like ya involved, like a rebound\n", 'Got no end game, got no reason\n', "Got to stay down, it's the way that you making me feel\n", 'Like nobody ever loved me like you do, you do\n', "You kinda feeling like you're tryna get away from me\n", "If you do, I won't move\n", "I ain't just cryin' for no reason\n", "I ain't just prayin' for no reason\n", 'I give thanks for the days, for the hours\n', "And another way, another life breathin'\n", "I did it all 'cause it feel good\n", "I wouldn't do it at all if it feel bad\n", "Better live your life, we're runnin' out of time\n", '[Kendrick Lamar & SZA:]\n', "Love, let's talk about love\n", 'Is it anything and everything you hoped for?\n', 'Or do the feeling haunt you?\n', 'I know the feeling haunt you\n', '[SZA:]\n', 'This may be the night that my dreams might let me know\n', 'All the stars approach you, all the stars approach you, all the stars approach you\n', 'This may be the night that my dreams might let me know\n', 'All the stars are closer, all the stars are closer, all the stars are closer\n']
-    
+
 
 ### Tokenizing our Data
 
@@ -167,34 +186,6 @@ song_without_brackets
 
 Great. Now, write a function that takes in songs that have had their brackets removed, joins all of the lines into a single string, and then uses `tokenize()` on it to get a fully tokenized version of the song.  Test this funtion on `song_without_brackets` to ensure that the function works. 
 
-
-```python
-def tokenize(song):
-    joined_song = ' '.join(song)
-    tokenized_song = word_tokenize(joined_song)
-    
-    return tokenized_song
-
-tokenized_test_song = tokenize(song_without_brackets)
-tokenized_test_song[:10]
-```
-
-
-
-
-    ['love',
-     'lets',
-     'talk',
-     'about',
-     'love',
-     'is',
-     'it',
-     'anything',
-     'and',
-     'everything']
-
-
-
 Great! Now that we know the ability to tokenize our songs, we can move onto Vectorization. 
 
 ### Count Vectorization
@@ -255,8 +246,8 @@ test_vectorized = count_vectorize(tokenized_test_song)
 print(test_vectorized)
 ```
 
-    {'dreams': 6, 'aint': 4, 'another': 2, 'let': 6, 'prayin': 1, 'promises': 1, 'haunt': 6, 'bring': 4, 'it': 7, 'morgue': 1, 'how': 1, 'i': 15, 'did': 1, 'stars': 18, 'gon': 1, 'tell': 1, 'live': 1, 'in': 2, 'if': 3, 'gift': 1, 'buildin': 1, 'tryna': 1, 'confrontation': 1, 'may': 6, 'false': 1, 'expectations': 1, 'involved': 1, 'days': 1, 'are': 9, 'for': 7, 'crazy': 1, 'who': 2, 'what': 1, 'important': 1, 'bad': 1, 'kinda': 1, 'end': 1, 'but': 1, 'this': 6, 'know': 9, 'covered': 1, 'fuck': 1, 'hoped': 3, 'ego': 1, 'away': 1, 'skin': 1, 'losin': 1, 'shit': 1, 'game': 1, 'that': 8, 'percentage': 1, 'on': 1, 'youre': 1, 'with': 3, 'be': 6, 'no': 4, 'mans': 1, 'momma': 1, 'look': 1, 'nobody': 1, 'about': 3, 'bullet': 1, 'rebound': 1, 'credit': 1, 'time': 1, 'invite': 1, 'lets': 3, 'realest': 1, 'ya': 1, 'cryin': 1, 'heart': 1, 'me': 14, 'to': 6, 'you': 34, 'congratulations': 1, 'like': 6, 'down': 1, 'reason': 3, 'want': 2, 'truth': 1, 'find': 1, 'out': 2, 'winnin': 1, 'recognize': 1, 'conversation': 1, 'confidence': 1, 'motherfucker': 1, 'thanks': 1, 'at': 2, 'small': 1, 'all': 22, 'runnin': 1, 'breathin': 1, 'my': 7, 'wouldnt': 1, 'or': 4, 'endorsin': 1, 'even': 2, 'everything': 3, 'better': 1, 'people': 1, 'moral': 1, 'hate': 1, 'and': 6, 'dont': 2, 'is': 3, 'sword': 1, 'its': 1, 'just': 2, 'anything': 3, 'cause': 2, 'give': 1, 'loved': 1, 'from': 1, 'good': 1, 'the': 38, 'wont': 1, 'can': 1, 'oh': 1, 'get': 2, 'life': 2, 'calculated': 1, 'talk': 3, 'entitled': 1, 'night': 6, 'new': 1, 'ever': 1, 'way': 2, 'approach': 9, 'were': 1, 'feel': 4, 'nothin': 1, 'do': 8, 'thats': 2, 'of': 1, 'talkin': 1, 'got': 3, 'feeling': 7, 'stay': 1, 'move': 1, 'im': 3, 'your': 5, 'making': 1, 'closer': 9, 'hours': 1, 'a': 7, 'might': 6, 'love': 6, 'dealin': 1, 'cant': 1, 'corrupt': 1, 'story': 1}
-    
+    {'me': 14, 'closer': 9, 'morgue': 1, 'hours': 1, 'to': 6, 'might': 6, 'what': 1, 'loved': 1, 'wouldnt': 1, 'its': 1, 'wont': 1, 'mans': 1, 'nobody': 1, 'endorsin': 1, 'losin': 1, 'im': 3, 'realest': 1, 'way': 2, 'and': 6, 'who': 2, 'moral': 1, 'prayin': 1, 'night': 6, 'congratulations': 1, 'youre': 1, 'anything': 3, 'crazy': 1, 'that': 8, 'time': 1, 'from': 1, 'new': 1, 'haunt': 6, 'about': 3, 'like': 6, 'making': 1, 'dreams': 6, 'conversation': 1, 'live': 1, 'feeling': 7, 'out': 2, 'ego': 1, 'let': 6, 'are': 9, 'find': 1, 'at': 2, 'game': 1, 'hate': 1, 'talkin': 1, 'tell': 1, 'all': 22, 'involved': 1, 'confrontation': 1, 'kinda': 1, 'stars': 18, 'percentage': 1, 'bring': 4, 'this': 6, 'promises': 1, 'cause': 2, 'the': 38, 'do': 8, 'a': 7, 'i': 15, 'motherfucker': 1, 'breathin': 1, 'bullet': 1, 'shit': 1, 'of': 1, 'lets': 3, 'may': 6, 'look': 1, 'love': 6, 'heart': 1, 'you': 34, 'approach': 9, 'hoped': 3, 'tryna': 1, 'if': 3, 'oh': 1, 'days': 1, 'get': 2, 'stay': 1, 'end': 1, 'winnin': 1, 'with': 3, 'ever': 1, 'runnin': 1, 'everything': 3, 'truth': 1, 'did': 1, 'give': 1, 'how': 1, 'no': 4, 'got': 3, 'reason': 3, 'bad': 1, 'gon': 1, 'ya': 1, 'were': 1, 'entitled': 1, 'good': 1, 'people': 1, 'just': 2, 'thanks': 1, 'is': 3, 'better': 1, 'or': 4, 'momma': 1, 'recognize': 1, 'skin': 1, 'gift': 1, 'can': 1, 'on': 1, 'away': 1, 'know': 9, 'corrupt': 1, 'rebound': 1, 'my': 7, 'want': 2, 'be': 6, 'credit': 1, 'another': 2, 'confidence': 1, 'down': 1, 'nothin': 1, 'but': 1, 'even': 2, 'aint': 4, 'important': 1, 'feel': 4, 'expectations': 1, 'move': 1, 'false': 1, 'invite': 1, 'small': 1, 'dont': 2, 'fuck': 1, 'cryin': 1, 'in': 2, 'life': 2, 'calculated': 1, 'cant': 1, 'sword': 1, 'for': 7, 'dealin': 1, 'it': 7, 'covered': 1, 'buildin': 1, 'talk': 3, 'story': 1, 'your': 5, 'thats': 2}
+
 
 Great! You've just successfully vectorized your first text document! Now, let's look at a more advanced type of vectorization, TF-IDF!
 
@@ -285,8 +276,8 @@ test = term_frequency(test_vectorized)
 print(list(test)[10:20])
 ```
 
-    ['how', 'i', 'did', 'stars', 'gon', 'tell', 'live', 'in', 'if', 'gift']
-    
+    ['wont', 'mans', 'nobody', 'endorsin', 'losin', 'im', 'realest', 'way', 'and', 'who']
+
 
 The formula for Inverse Document Frequency is:  
 <br>  
@@ -365,6 +356,8 @@ In the cell below, complete the `main` function.  This function should take in a
 1. Convert each document to a Bag of Words (dictionary representation)
 1. Return a list of dictionaries vectorized using tf-idf, where each dictionary is a vectorized representation of a document.  
 
+**_HINT:_** Remember that all files are stored in the `data/` directory.  Be sure to append this to the filename when reading in each file, otherwise the path won't be correct!
+
 
 ```python
 def main(filenames):
@@ -390,8 +383,8 @@ tf_idf_all_docs = main(filenames)
 print(list(tf_idf_all_docs[0])[:10])
 ```
 
-    ['dreams', 'passage', 'fiery', 'their', 'vincent', 'sea', 'hummed', 'it', 'fourteen', 'gates']
-    
+    ['gods', 'me', 'jesus', 'could', 'to', 'beneath', 'sad', 'passage', 'rode', 'and']
+
 
 ### Visualizing our Vectorizations
 
@@ -407,10 +400,12 @@ num_dims = len(tf_idf_all_docs[0])
 print("Number of Dimensions: {}".format(num_dims))
 ```
 
-    Number of Dimensions: 1345
-    
+    Number of Dimensions: 1344
+
 
 That's much too high-dimensional for us to visualize! In order to make it understandable to human eyes, we'll need to reduce dimensionality to 2 or 3 dimensions.  
+
+### Reducing Dimensionality
 
 To do this, we'll use a technique called **_t-SNE_** (short for _t-Stochastic Neighbors Embedding_).  This is too complex for us to code ourselves, so we'll make use of sklearn's implementation of it.  
 
@@ -431,16 +426,16 @@ tf_idf_vals_list[0][:10]
 
 
 
-    [0.023713999811073517,
-     0.027399990306896257,
-     0.027399990306896257,
-     0.00854558551750397,
+    [0.027399990306896257,
+     0.007829598291726659,
+     0.009133330102298753,
+     0.007558246951736579,
+     0.00012855462252518916,
+     0.0036433308433450095,
      0.009133330102298753,
      0.027399990306896257,
      0.009133330102298753,
-     0.0005592570208376184,
-     0.009133330102298753,
-     0.027399990306896257]
+     0.0005142184901007566]
 
 
 
@@ -456,26 +451,26 @@ transformed_data_3d
 
 
 
-    array([[  -12.992137,    37.804897,  -208.84592 ],
-           [  684.0743  ,  -794.5156  ,     8.946459],
-           [    2.278559,   528.1361  ,   -98.87345 ],
-           [ -882.53864 ,   730.9954  ,  -285.27332 ],
-           [   45.91121 ,  -359.6656  ,   234.38834 ],
-           [  -97.61815 ,   299.00665 ,  -793.7565  ],
-           [  203.51263 ,  -224.95358 ,   -93.26531 ],
-           [ -184.45418 ,    85.74047 ,   290.68585 ],
-           [ -105.4274  ,   271.64078 ,    31.432402],
-           [  270.58102 ,   222.44731 ,   -24.840424],
-           [  177.59155 ,  -409.02722 ,   602.4249  ],
-           [  265.7553  ,   269.30267 ,   328.07343 ],
-           [ -310.63098 ,  -204.7601  ,   382.46536 ],
-           [  186.82774 ,    21.257849,  -457.13504 ],
-           [ -167.31094 ,  -269.02023 ,   -25.100863],
-           [  963.3193  , -1011.96313 ,   257.2696  ],
-           [  124.95008 ,   -22.056746,   187.5066  ],
-           [ -340.29037 ,    29.874846,   -50.913094],
-           [ -528.3744  ,  1128.4409  ,   -95.192024],
-           [ -845.83185 ,  -242.78752 ,  -501.2561  ]], dtype=float32)
+    array([[  231.11954 ,   166.92168 ,   247.52338 ],
+           [-1414.5289  ,   970.96545 ,   -19.551298],
+           [ -147.54305 ,  -343.64426 ,    49.74481 ],
+           [   43.411037,  -177.78787 ,   257.21094 ],
+           [  720.9714  ,  -462.2896  ,    33.972557],
+           [   75.77639 ,  -702.3763  ,  -157.50604 ],
+           [  -54.84926 ,    62.768852,   122.372925],
+           [ -789.28107 ,   272.70856 ,   460.32062 ],
+           [ 1008.1438  ,  -296.56628 ,  -493.4566  ],
+           [   30.591494,   565.0114  ,    39.684956],
+           [   20.868444,   298.8423  ,    -6.653486],
+           [  185.89403 ,    46.59996 ,  -310.7247  ],
+           [ -270.13562 ,   298.76547 ,   194.06871 ],
+           [ -143.42635 ,   183.1358  ,  -244.66583 ],
+           [ -108.21775 ,  -122.77396 ,  -179.87697 ],
+           [ -345.88397 ,     8.630952,    36.74886 ],
+           [ -193.13078 ,   347.1562  ,  -901.4794  ],
+           [  251.90283 ,    -8.289174,    -9.721024],
+           [  226.16806 ,  -360.53104 ,  1684.0344  ],
+           [  172.26106 ,  -292.8067  ,  -124.82952 ]], dtype=float32)
 
 
 
@@ -491,26 +486,26 @@ transformed_data_2d
 
 
 
-    array([[-129.33768  ,   32.315887 ],
-           [  37.011868 ,  -77.01625  ],
-           [ -24.536522 ,  152.57635  ],
-           [ -90.63666  ,   99.16198  ],
-           [-143.8061   ,  -46.2448   ],
-           [ -55.347694 ,   30.439142 ],
-           [ -95.97229  , -115.90211  ],
-           [  72.67015  ,   50.841705 ],
-           [  -4.5910316, -150.6982   ],
-           [  14.4173765,   29.41396  ],
-           [ 138.14459  ,    7.684495 ],
-           [ -32.61266  ,  -86.24842  ],
-           [  51.281906 ,  122.03984  ],
-           [  78.18397  , -133.86229  ],
-           [ 120.117874 ,  -66.83362  ],
-           [  -7.8837066,  -26.147024 ],
-           [ 128.90428  ,   91.89491  ],
-           [ -13.914132 ,   84.22321  ],
-           [ -75.57968  ,  -31.526733 ],
-           [  65.113556 ,  -17.299585 ]], dtype=float32)
+    array([[  18.36096 ,  -40.134518],
+           [ -28.390463,  117.19662 ],
+           [-128.40771 ,   45.190205],
+           [-153.02022 , -147.78186 ],
+           [ -30.539175, -123.39438 ],
+           [ -38.840664,   25.463322],
+           [  79.52902 ,  168.17924 ],
+           [ 176.41463 , -129.10757 ],
+           [ -63.19756 , -221.47995 ],
+           [ -97.60625 ,  -53.445858],
+           [ 114.25683 ,  -19.347446],
+           [  74.01111 , -116.98399 ],
+           [ -27.70873 ,  220.696   ],
+           [ 217.08322 ,  -10.879038],
+           [-133.16995 ,  156.161   ],
+           [ 161.2835  ,   92.166725],
+           [-207.33006 ,  -47.043247],
+           [  56.11059 ,   59.63706 ],
+           [-227.11708 ,   72.7736  ],
+           [  58.250168, -217.99628 ]], dtype=float32)
 
 
 
@@ -553,21 +548,32 @@ plt.show()
 ```
 
 
-![png](output_31_0.png)
+![png](index_files/index_28_0.png)
 
 
 
-![png](output_31_1.png)
+![png](index_files/index_28_1.png)
 
 
 Interesting! Take a crack at interpreting these graphs by answering the following question below:
 
 What does each graph mean? Do you find one graph more informative than the other? Do you think that this method shows us discernable differences between Kendrick Lamar songs and Garth Brooks songs?  Use the graphs and your understanding of TF-IDF to support your answer.  
 
-Write your answer to this question below this line:
-________________________________________________________________________________________________________________________________
+Write your answer to this question below:  
 
-Both graphs show a basic trend among the red and blue dots, although the 3-dimensional graph is more informative than the 2-dimensional graph.  We see a separation between the two artists because they both have words that they use, but the other artist does not.  The words in each song that are common to both are reduced very small numbers or to 0, because of the log operation in the IDF function.  This means that the elements of each song vector with the highest values will be the ones that have words that are unique to that specific document, or at least are rarely used in others.  
+
+```python
+"""
+Both graphs show a basic trend among the red and blue dots, 
+although the 3-dimensional graph is more informative than 
+the 2-dimensional graph.  We see a separation between the two 
+artists because they both have words that they use, but the other artist does not.  
+The words in each song that are common to both are reduced very small numbers or to 0, 
+because of the log operation in the IDF function.  This means that the 
+elements of each song vector with the highest values will be the ones that have 
+words that are unique to that specific document, or at least are rarely used in others.
+"""
+```
 
 ### Conclusion
 
