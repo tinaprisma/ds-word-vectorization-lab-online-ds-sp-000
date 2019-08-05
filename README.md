@@ -44,6 +44,11 @@ Next, let's import a single song to see what our text looks like so that we can 
 
 In the cell below, read in and print out the lyrics from `song11.txt`.  Use vanilla python, no pandas needed.  
 
+
+```python
+
+```
+
 ### Tokenizing our Data
 
 Before we can create a Bag of Words or vectorize each document, we need to clean it up and split each song into an array of individual words.  Computers are very particular about strings. If we tokenized our data in it's current state, we would run into the following problems:
@@ -88,6 +93,34 @@ def tokenize(song):
 tokenized_test_song = None
 tokenized_test_song[:10]
 ```
+
+
+```python
+def tokenize(song):
+    joined_song = ' '.join(song)
+    tokenized_song = word_tokenize(joined_song)
+    
+    return tokenized_song
+
+tokenized_test_song = tokenize(song_without_brackets)
+tokenized_test_song[:10]
+```
+
+
+
+
+    ['love',
+     'lets',
+     'talk',
+     'about',
+     'love',
+     'is',
+     'it',
+     'anything',
+     'and',
+     'everything']
+
+
 
 Great! Now that we know the ability to tokenize our songs, we can move onto Vectorization. 
 
@@ -221,6 +254,7 @@ Let's investigate how many dimensions our data currently has.  In the cell below
 
 ```python
 num_dims = None
+
 print("Number of Dimensions: {}".format(num_dims))
 ```
 
@@ -300,14 +334,24 @@ ax.legend()
 plt.show()
 ```
 
+
+![png](index_files/index_30_0.png)
+
+
+
+![png](index_files/index_30_1.png)
+
+
 Interesting! Take a crack at interpreting these graphs by answering the following question below:
 
 What does each graph mean? Do you find one graph more informative than the other? Do you think that this method shows us discernable differences between Kendrick Lamar songs and Garth Brooks songs?  Use the graphs and your understanding of TF-IDF to support your answer.  
 
-Write your answer to this question below this line:
-________________________________________________________________________________________________________________________________
+Write your answer to this question below:  
 
-Both graphs show a basic trend among the red and blue dots, although the 3-dimensional graph is more informative than the 2-dimensional graph.  We see a separation between the two artists because they both have words that they use, but the other artist does not.  The words in each song that are common to both are reduced very small numbers or to 0, because of the log operation in the IDF function.  This means that the elements of each song vector with the highest values will be the ones that have words that are unique to that specific document, or at least are rarely used in others.  
+
+```python
+# Your answer here
+```
 
 ### Conclusion
 
