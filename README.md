@@ -186,6 +186,34 @@ song_without_brackets
 
 Great. Now, write a function that takes in songs that have had their brackets removed, joins all of the lines into a single string, and then uses `tokenize()` on it to get a fully tokenized version of the song.  Test this funtion on `song_without_brackets` to ensure that the function works. 
 
+
+```python
+def tokenize(song):
+    joined_song = ' '.join(song)
+    tokenized_song = word_tokenize(joined_song)
+    
+    return tokenized_song
+
+tokenized_test_song = tokenize(song_without_brackets)
+tokenized_test_song[:10]
+```
+
+
+
+
+    ['love',
+     'lets',
+     'talk',
+     'about',
+     'love',
+     'is',
+     'it',
+     'anything',
+     'and',
+     'everything']
+
+
+
 Great! Now that we know the ability to tokenize our songs, we can move onto Vectorization. 
 
 ### Count Vectorization
@@ -246,7 +274,7 @@ test_vectorized = count_vectorize(tokenized_test_song)
 print(test_vectorized)
 ```
 
-    {'me': 14, 'closer': 9, 'morgue': 1, 'hours': 1, 'to': 6, 'might': 6, 'what': 1, 'loved': 1, 'wouldnt': 1, 'its': 1, 'wont': 1, 'mans': 1, 'nobody': 1, 'endorsin': 1, 'losin': 1, 'im': 3, 'realest': 1, 'way': 2, 'and': 6, 'who': 2, 'moral': 1, 'prayin': 1, 'night': 6, 'congratulations': 1, 'youre': 1, 'anything': 3, 'crazy': 1, 'that': 8, 'time': 1, 'from': 1, 'new': 1, 'haunt': 6, 'about': 3, 'like': 6, 'making': 1, 'dreams': 6, 'conversation': 1, 'live': 1, 'feeling': 7, 'out': 2, 'ego': 1, 'let': 6, 'are': 9, 'find': 1, 'at': 2, 'game': 1, 'hate': 1, 'talkin': 1, 'tell': 1, 'all': 22, 'involved': 1, 'confrontation': 1, 'kinda': 1, 'stars': 18, 'percentage': 1, 'bring': 4, 'this': 6, 'promises': 1, 'cause': 2, 'the': 38, 'do': 8, 'a': 7, 'i': 15, 'motherfucker': 1, 'breathin': 1, 'bullet': 1, 'shit': 1, 'of': 1, 'lets': 3, 'may': 6, 'look': 1, 'love': 6, 'heart': 1, 'you': 34, 'approach': 9, 'hoped': 3, 'tryna': 1, 'if': 3, 'oh': 1, 'days': 1, 'get': 2, 'stay': 1, 'end': 1, 'winnin': 1, 'with': 3, 'ever': 1, 'runnin': 1, 'everything': 3, 'truth': 1, 'did': 1, 'give': 1, 'how': 1, 'no': 4, 'got': 3, 'reason': 3, 'bad': 1, 'gon': 1, 'ya': 1, 'were': 1, 'entitled': 1, 'good': 1, 'people': 1, 'just': 2, 'thanks': 1, 'is': 3, 'better': 1, 'or': 4, 'momma': 1, 'recognize': 1, 'skin': 1, 'gift': 1, 'can': 1, 'on': 1, 'away': 1, 'know': 9, 'corrupt': 1, 'rebound': 1, 'my': 7, 'want': 2, 'be': 6, 'credit': 1, 'another': 2, 'confidence': 1, 'down': 1, 'nothin': 1, 'but': 1, 'even': 2, 'aint': 4, 'important': 1, 'feel': 4, 'expectations': 1, 'move': 1, 'false': 1, 'invite': 1, 'small': 1, 'dont': 2, 'fuck': 1, 'cryin': 1, 'in': 2, 'life': 2, 'calculated': 1, 'cant': 1, 'sword': 1, 'for': 7, 'dealin': 1, 'it': 7, 'covered': 1, 'buildin': 1, 'talk': 3, 'story': 1, 'your': 5, 'thats': 2}
+    {'entitled': 1, 'sword': 1, 'find': 1, 'percentage': 1, 'dealin': 1, 'covered': 1, 'calculated': 1, 'be': 6, 'can': 1, 'approach': 9, 'dont': 2, 'it': 7, 'ever': 1, 'get': 2, 'want': 2, 'give': 1, 'were': 1, 'people': 1, 'talkin': 1, 'life': 2, 'better': 1, 'haunt': 6, 'i': 15, 'what': 1, 'dreams': 6, 'all': 22, 'thats': 2, 'at': 2, 'the': 38, 'story': 1, 'confrontation': 1, 'are': 9, 'kinda': 1, 'time': 1, 'nothin': 1, 'let': 6, 'confidence': 1, 'stay': 1, 'is': 3, 'fuck': 1, 'you': 34, 'game': 1, 'on': 1, 'hours': 1, 'a': 7, 'ya': 1, 'from': 1, 'way': 2, 'may': 6, 'small': 1, 'rebound': 1, 'closer': 9, 'of': 1, 'away': 1, 'move': 1, 'did': 1, 'good': 1, 'making': 1, 'hoped': 3, 'anything': 3, 'expectations': 1, 'with': 3, 'down': 1, 'promises': 1, 'cause': 2, 'new': 1, 'just': 2, 'skin': 1, 'talk': 3, 'momma': 1, 'know': 9, 'my': 7, 'congratulations': 1, 'got': 3, 'realest': 1, 'days': 1, 'mans': 1, 'involved': 1, 'cant': 1, 'another': 2, 'reason': 3, 'breathin': 1, 'how': 1, 'this': 6, 'end': 1, 'live': 1, 'stars': 18, 'wont': 1, 'winnin': 1, 'and': 6, 'invite': 1, 'hate': 1, 'lets': 3, 'night': 6, 'nobody': 1, 'might': 6, 'bring': 4, 'tell': 1, 'heart': 1, 'shit': 1, 'recognize': 1, 'your': 5, 'im': 3, 'out': 2, 'bullet': 1, 'look': 1, 'aint': 4, 'oh': 1, 'corrupt': 1, 'wouldnt': 1, 'that': 8, 'gift': 1, 'tryna': 1, 'bad': 1, 'losin': 1, 'everything': 3, 'truth': 1, 'conversation': 1, 'morgue': 1, 'but': 1, 'even': 2, 'runnin': 1, 'cryin': 1, 'for': 7, 'feeling': 7, 'false': 1, 'credit': 1, 'its': 1, 'if': 3, 'thanks': 1, 'gon': 1, 'important': 1, 'who': 2, 'youre': 1, 'in': 2, 'about': 3, 'endorsin': 1, 'feel': 4, 'to': 6, 'do': 8, 'moral': 1, 'buildin': 1, 'me': 14, 'loved': 1, 'ego': 1, 'like': 6, 'no': 4, 'motherfucker': 1, 'or': 4, 'crazy': 1, 'prayin': 1, 'love': 6}
 
 
 Great! You've just successfully vectorized your first text document! Now, let's look at a more advanced type of vectorization, TF-IDF!
@@ -276,7 +304,7 @@ test = term_frequency(test_vectorized)
 print(list(test)[10:20])
 ```
 
-    ['wont', 'mans', 'nobody', 'endorsin', 'losin', 'im', 'realest', 'way', 'and', 'who']
+    ['dont', 'it', 'ever', 'get', 'want', 'give', 'were', 'people', 'talkin', 'life']
 
 
 The formula for Inverse Document Frequency is:  
@@ -383,7 +411,7 @@ tf_idf_all_docs = main(filenames)
 print(list(tf_idf_all_docs[0])[:10])
 ```
 
-    ['gods', 'me', 'jesus', 'could', 'to', 'beneath', 'sad', 'passage', 'rode', 'and']
+    ['pearly', 'teach', 'water', 'such', 'an', 'girl', 'valentines', 'now', '8teen', 'rode']
 
 
 ### Visualizing our Vectorizations
@@ -548,11 +576,11 @@ plt.show()
 ```
 
 
-![png](index_files/index_28_0.png)
+![png](index_files/index_29_0.png)
 
 
 
-![png](index_files/index_28_1.png)
+![png](index_files/index_29_1.png)
 
 
 Interesting! Take a crack at interpreting these graphs by answering the following question below:
