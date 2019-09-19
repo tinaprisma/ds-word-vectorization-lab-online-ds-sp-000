@@ -94,34 +94,6 @@ tokenized_test_song = None
 tokenized_test_song[:10]
 ```
 
-
-```python
-def tokenize(song):
-    joined_song = ' '.join(song)
-    tokenized_song = word_tokenize(joined_song)
-    
-    return tokenized_song
-
-tokenized_test_song = tokenize(song_without_brackets)
-tokenized_test_song[:10]
-```
-
-
-
-
-    ['love',
-     'lets',
-     'talk',
-     'about',
-     'love',
-     'is',
-     'it',
-     'anything',
-     'and',
-     'everything']
-
-
-
 Great! Now that we know the ability to tokenize our songs, we can move onto Vectorization. 
 
 ### Count Vectorization
@@ -335,11 +307,11 @@ plt.show()
 ```
 
 
-![png](index_files/index_30_0.png)
+![png](index_files/index_29_0.png)
 
 
 
-![png](index_files/index_30_1.png)
+![png](index_files/index_29_1.png)
 
 
 Interesting! Take a crack at interpreting these graphs by answering the following question below:
