@@ -16,7 +16,20 @@ In this lab, we'll learn how totokenize and vectorize text documents, create an 
 Run the cell below to import everything necessary for this lab.  
 
 
-```python
+```
+import pandas as pd
+import numpy as np
+from mpl_toolkits.mplot3d import Axes3D
+import matplotlib.pyplot as plt
+%matplotlib inline
+from sklearn.manifold import TSNE
+from nltk.tokenize import word_tokenize
+np.random.seed(0)
+```
+
+
+```
+# __SOLUTION__
 import pandas as pd
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
@@ -36,7 +49,13 @@ The songs are contained within the `data` subdirectory, contained within the sam
 To make it easy to read in all of the documents, use a list comprehension to create a list containing the name of every single song file in the cell below. 
 
 
-```python
+```
+filenames = None
+```
+
+
+```
+# __SOLUTION__
 filenames = ['song' + str(i) + '.txt' for i in range(1, 21)]
 filenames
 ```
@@ -72,7 +91,13 @@ Next, let's import a single song to see what our text looks like so that we can 
 In the cell below, read in and print out the lyrics from `song11.txt`.  Use vanilla python, no pandas needed.  
 
 
-```python
+```
+# read in song11.txt here
+```
+
+
+```
+# __SOLUTION__
 with open('data/song11.txt') as f:
     test_song = f.readlines()
     print(test_song)
@@ -107,7 +132,17 @@ Before we tokenize our songs, we'll do only a small manual bit of cleaning.  In 
 Test the function on `test_song` to show that it has successfully removed `'[Kendrick Lamar:]'` and other instances of artist names from the song and returned it.  
 
 
-```python
+```
+def clean_song(song):
+    pass
+
+song_without_brackets = None
+song_without_brackets
+```
+
+
+```
+# __SOLUTION__
 def clean_song(song):
     cleaned_song = []
     for line in song:
@@ -187,7 +222,17 @@ song_without_brackets
 Great. Now, write a function that takes in songs that have had their brackets removed, joins all of the lines into a single string, and then uses `tokenize()` on it to get a fully tokenized version of the song.  Test this funtion on `song_without_brackets` to ensure that the function works. 
 
 
-```python
+```
+def tokenize(song):
+    pass
+
+tokenized_test_song = None
+tokenized_test_song[:10]
+```
+
+
+```
+# __SOLUTION__
 def tokenize(song):
     joined_song = ' '.join(song)
     tokenized_song = word_tokenize(joined_song)
@@ -256,7 +301,17 @@ In the cell below, create a function that takes in a tokenized, cleaned song and
 **_Hint:_**  Consider using a `set` object to make this easier!
 
 
-```python
+```
+def count_vectorize(song, vocab=None):
+    pass
+
+test_vectorized = None
+print(test_vectorized)
+```
+
+
+```
+# __SOLUTION__
 def count_vectorize(song, vocab=None):
     if vocab:
         unique_words = vocab
@@ -291,7 +346,18 @@ $$\large Term\ Frequency(t) = \frac{number\ of\ times\ t\ appears\ in\ a\ docume
 Complete the following function below to calculate term frequency for every term in a document.  
 
 
-```python
+```
+def term_frequency(BoW_dict):
+    pass
+
+test = None
+print(list(test)[10:20])
+
+```
+
+
+```
+# __SOLUTION__
 def term_frequency(BoW_dict):
     total_word_count = sum(BoW_dict.values())
     
@@ -315,7 +381,14 @@ $$\large  IDF(t) =  log_e(\frac{Total\ Number\ of\ Documents}{Number\ of\ Docume
 Now that we have this, we can easily calculate _Inverse Document Frequency_.  In the cell below, complete the following function.  this function should take in the list of dictionaries, with each item in the list being a Bag of Words representing the words in a different song. The function should return a dictionary containing the inverse document frequency values for each word.  
 
 
-```python
+```
+def inverse_document_frequency(list_of_dicts):
+    pass
+```
+
+
+```
+# __SOLUTION__
 def inverse_document_frequency(list_of_dicts):
     vocab_set = set()
     # Iterate through list of dfs and add index to vocab_set
@@ -353,7 +426,14 @@ In the cell below, complete the `tf_idf()` function.  This function should take 
 **_NOTE:_** Each document should contain the full vocabulary of the entire combined corpus.  
 
 
-```python
+```
+def tf_idf(list_of_dicts):
+    pass
+```
+
+
+```
+# __SOLUTION__
 def tf_idf(list_of_dicts):
     # Create empty dictionary containing full vocabulary of entire corpus
     doc_tf_idf = {}
@@ -387,7 +467,17 @@ In the cell below, complete the `main` function.  This function should take in a
 **_HINT:_** Remember that all files are stored in the `data/` directory.  Be sure to append this to the filename when reading in each file, otherwise the path won't be correct!
 
 
-```python
+```
+def main(filenames):
+    pass
+
+tf_idf_all_docs = None
+print(list(tf_idf_all_docs[0])[:10])
+```
+
+
+```
+# __SOLUTION__
 def main(filenames):
     # Iterate through list of filenames and read each in
     count_vectorized_all_documents = []
@@ -423,7 +513,17 @@ Let's investigate how many dimensions our data currently has.  In the cell below
 **_HINT_**: Remember that every word is it's own dimension!
 
 
-```python
+```
+num_dims = len(tf_idf_all_docs[0])
+print("Number of Dimensions: {}".format(num_dims))
+```
+
+    Number of Dimensions: 1344
+
+
+
+```
+# __SOLUTION__
 num_dims = len(tf_idf_all_docs[0])
 print("Number of Dimensions: {}".format(num_dims))
 ```
@@ -442,7 +542,34 @@ First, we need to pull the words out of the dictionaries stored in `tf_idf_all_d
 In the cell below, create a list of lists that contains a list representation of the values of each of the dictionaries stored in `tf_idf_all_docs`.  The same structure should remain--e.g. the first list should contain only the values that were in the 1st dictionary in `tf_idf_all_docs`, and so on. 
 
 
-```python
+```
+tf_idf_vals_list = []
+
+for i in tf_idf_all_docs:
+    tf_idf_vals_list.append(list(i.values()))
+    
+tf_idf_vals_list[0][:10]
+```
+
+
+
+
+    [0.027399990306896257,
+     0.007829598291726659,
+     0.009133330102298753,
+     0.007558246951736579,
+     0.00012855462252518916,
+     0.0036433308433450095,
+     0.009133330102298753,
+     0.027399990306896257,
+     0.009133330102298753,
+     0.0005142184901007566]
+
+
+
+
+```
+# __SOLUTION__
 tf_idf_vals_list = []
 
 for i in tf_idf_all_docs:
@@ -470,7 +597,15 @@ tf_idf_vals_list[0][:10]
 Now that we have only the values, we can use the `TSNE` object from `sklearn` to transform our data appropriately.  In the cell below, create a `TSNE` with `n_components=3` passed in as a parameter.  Then, use the created object's `fit_transform()` method to transform the data stored in `tf_idf_vals_list` into 3-dimensional data.  Then, inspect the newly transformed data to confirm that it has the correct dimensionality. 
 
 
-```python
+```
+t_sne_object_3d = None
+transformed_data_3d = None
+transformed_data_3d
+```
+
+
+```
+# __SOLUTION__
 t_sne_object_3d = TSNE(n_components=3)
 transformed_data_3d = t_sne_object_3d.fit_transform(tf_idf_vals_list)
 transformed_data_3d
@@ -505,7 +640,15 @@ transformed_data_3d
 We'll also want to check out how the visualization looks in 2d.  Repeat the process above, but this time, create a `TSNE` object with 2 components instead of 3.  Again, use `fit_transform()` to transform the data and store it in the variable below, and then inspect it to confirm the transformed data has only 2 dimensions. 
 
 
-```python
+```
+t_sne_object_2d = None
+transformed_data_2d = None
+transformed_data_2d
+```
+
+
+```
+# __SOLUTION__
 t_sne_object_2d = TSNE(n_components=2)
 transformed_data_2d = t_sne_object_2d.fit_transform(tf_idf_vals_list)
 transformed_data_2d
@@ -540,7 +683,7 @@ transformed_data_2d
 Now, let's visualize everything!  Run the cell below to a 3D visualization of the songs.
 
 
-```python
+```
 kendrick_3d = transformed_data_3d[10:]
 k3_x = [i[0] for i in kendrick_3d]
 k3_y = [i[1] for i in kendrick_3d]
@@ -576,11 +719,56 @@ plt.show()
 ```
 
 
-![png](index_files/index_29_0.png)
+![png](index_files/index_43_0.png)
 
 
 
-![png](index_files/index_29_1.png)
+![png](index_files/index_43_1.png)
+
+
+
+```
+# __SOLUTION__
+kendrick_3d = transformed_data_3d[10:]
+k3_x = [i[0] for i in kendrick_3d]
+k3_y = [i[1] for i in kendrick_3d]
+k3_z = [i[2] for i in kendrick_3d]
+
+garth_3d = transformed_data_3d[:10]
+g3_x = [i[0] for i in garth_3d]
+g3_y = [i[1] for i in garth_3d]
+g3_z = [i[2] for i in garth_3d]
+
+fig = plt.figure(figsize=(20,10))
+ax = fig.add_subplot(111, projection='3d')
+ax.scatter(k3_x, k3_y, k3_z, c='b', s=60, label='Kendrick')
+ax.scatter(g3_x, g3_y, g3_z, c='red', s=60, label='Garth')
+ax.view_init(30, 10)
+ax.legend()
+plt.show()
+
+kendrick_2d = transformed_data_2d[:10]
+k2_x = [i[0] for i in kendrick_2d]
+k2_y = [i[1] for i in kendrick_2d]
+
+garth_2d = transformed_data_2d[10:]
+g2_x = [i[0] for i in garth_2d]
+g2_y = [i[1] for i in garth_2d]
+
+fig = plt.figure(figsize=(20,10))
+ax = fig.add_subplot(222)
+ax.scatter(k2_x, k2_y, c='b', label='Kendrick')
+ax.scatter(g2_x, g2_y, c='red', label='Garth')
+ax.legend()
+plt.show()
+```
+
+
+![png](index_files/index_44_0.png)
+
+
+
+![png](index_files/index_44_1.png)
 
 
 Interesting! Take a crack at interpreting these graphs by answering the following question below:
@@ -590,7 +778,13 @@ What does each graph mean? Do you find one graph more informative than the other
 Write your answer to this question below:  
 
 
-```python
+```
+# Your Written Answer Here
+```
+
+
+```
+# __SOLUTION__
 """
 Both graphs show a basic trend among the red and blue dots, 
 although the 3-dimensional graph is more informative than 
