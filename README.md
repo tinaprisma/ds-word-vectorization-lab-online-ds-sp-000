@@ -102,6 +102,13 @@ Tokenization is a required task for just about any Natural Language Processing (
 
 **_NOTE:_** NLTK requires extra installation methods to be run the first time certain methods are used.  If `nltk` throws you an error about needing to install additional packages, follow the instructions in the error message to install the dependencies, and then rerun the cell.  
 
+> In this case, you may need to run the following code:
+``` python
+import nltk
+nltk.download('punkt')
+``` 
+to download the Punkt sentence tokenizer.
+
 Before we tokenize our songs, we'll do only a small manual bit of cleaning.  In the cell below, write a function that allows us to remove lines that have `['artist names']` in it, to ensure that our song files contain only lyrics that are actually in the song. For the lines that remain, make every word lowercase, remove newline characters `\n`, and any of the following punctuation marks: `",.'?!"`
 
 Test the function on `test_song` to show that it has successfully removed `'[Kendrick Lamar:]'` and other instances of artist names from the song and returned it.  
