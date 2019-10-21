@@ -127,6 +127,13 @@ Tokenization is a required task for just about any Natural Language Processing (
 
 **_NOTE:_** NLTK requires extra installation methods to be run the first time certain methods are used.  If `nltk` throws you an error about needing to install additional packages, follow the instructions in the error message to install the dependencies, and then rerun the cell.  
 
+> In this case, you may need to run the following code:
+``` python
+import nltk
+nltk.download('punkt')
+``` 
+to download the Punkt sentence tokenizer.
+
 Before we tokenize our songs, we'll do only a small manual bit of cleaning.  In the cell below, write a function that allows us to remove lines that have `['artist names']` in it, to ensure that our song files contain only lyrics that are actually in the song. For the lines that remain, make every word lowercase, remove newline characters `\n`, and any of the following punctuation marks: `",.'?!"`
 
 Test the function on `test_song` to show that it has successfully removed `'[Kendrick Lamar:]'` and other instances of artist names from the song and returned it.  
@@ -677,11 +684,7 @@ g3_x = [i[0] for i in garth_3d]
 g3_y = [i[1] for i in garth_3d]
 g3_z = [i[2] for i in garth_3d]
 
-<<<<<<< local
 fig = plt.figure(figsize=(20,10))
-=======
-fig = plt.figure(figsize=(10,5))
->>>>>>> remote
 ax = fig.add_subplot(111, projection='3d')
 ax.scatter(k3_x, k3_y, k3_z, c='b', s=60, label='Kendrick')
 ax.scatter(g3_x, g3_y, g3_z, c='red', s=60, label='Garth')
@@ -707,11 +710,7 @@ plt.show()
 
 
 ```python
-<<<<<<< local
 # __SOLUTION__
-=======
-# __SOLUTION__ 
->>>>>>> remote
 kendrick_3d = transformed_data_3d[10:]
 k3_x = [i[0] for i in kendrick_3d]
 k3_y = [i[1] for i in kendrick_3d]
@@ -754,8 +753,6 @@ plt.show()
 ![png](index_files/index_44_1.png)
 
 
-<span style="color:red">**<<<<<<< local**</span>
-
 Interesting! Take a crack at interpreting these graphs by answering the following question below:
 
 What does each graph mean? Do you find one graph more informative than the other? Do you think that this method shows us discernable differences between Kendrick Lamar songs and Garth Brooks songs?  Use the graphs and your understanding of TF-IDF to support your answer.  
@@ -781,36 +778,6 @@ elements of each song vector with the highest values will be the ones that have
 words that are unique to that specific document, or at least are rarely used in others.
 """
 ```
-
-<span style="color:red">**=======**</span>
-
-Interesting! Take a crack at interpreting these graphs by answering the following question below:
-
-What does each graph mean? Do you find one graph more informative than the other? Do you think that this method shows us discernable differences between Kendrick Lamar songs and Garth Brooks songs?  Use the graphs and your understanding of TF-IDF to support your answer.  
-
-Write your answer to this question below:  
-
-
-```python
-# Your answer here
-```
-
-
-```python
-__SOLUTION__
-"""
-Both graphs show a basic trend among the red and blue dots, 
-although the 3-dimensional graph is more informative than 
-the 2-dimensional graph.  We see a separation between the two 
-artists because they both have words that they use, but the other artist does not.  
-The words in each song that are common to both are reduced very small numbers or to 0, 
-because of the log operation in the IDF function.  This means that the 
-elements of each song vector with the highest values will be the ones that have 
-words that are unique to that specific document, or at least are rarely used in others.
-"""
-```
-
-<span style="color:red">**>>>>>>> remote**</span>
 
 ### Conclusion
 
