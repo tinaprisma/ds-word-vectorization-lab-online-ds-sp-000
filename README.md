@@ -46,7 +46,7 @@ In the cell below, read in and print out the lyrics from `song11.txt`.  Use vani
 
 
 ```python
-
+# read in song11.txt here
 ```
 
 ### Tokenizing our Data
@@ -70,6 +70,13 @@ Tokenization is a required task for just about any Natural Language Processing (
 
 **_NOTE:_** NLTK requires extra installation methods to be run the first time certain methods are used.  If `nltk` throws you an error about needing to install additional packages, follow the instructions in the error message to install the dependencies, and then rerun the cell.  
 
+> In this case, you may need to run the following code:
+``` python
+import nltk
+nltk.download('punkt')
+``` 
+to download the Punkt sentence tokenizer.
+
 Before we tokenize our songs, we'll do only a small manual bit of cleaning.  In the cell below, write a function that allows us to remove lines that have `['artist names']` in it, to ensure that our song files contain only lyrics that are actually in the song. For the lines that remain, make every word lowercase, remove newline characters `\n`, and any of the following punctuation marks: `",.'?!"`
 
 Test the function on `test_song` to show that it has successfully removed `'[Kendrick Lamar:]'` and other instances of artist names from the song and returned it.  
@@ -80,7 +87,10 @@ def clean_song(song):
     pass
 
 song_without_brackets = None
+song_without_brackets
+
 print(song_without_brackets)
+
 ```
 
 Great. Now, write a function that takes in songs that have had their brackets removed, joins all of the lines into a single string, and then uses `tokenize()` on it to get a fully tokenized version of the song.  Test this funtion on `song_without_brackets` to ensure that the function works. 
@@ -225,8 +235,7 @@ Let's investigate how many dimensions our data currently has.  In the cell below
 
 
 ```python
-num_dims = None
-
+num_dims = len(tf_idf_all_docs[0])
 print("Number of Dimensions: {}".format(num_dims))
 ```
 
@@ -282,7 +291,7 @@ g3_x = [i[0] for i in garth_3d]
 g3_y = [i[1] for i in garth_3d]
 g3_z = [i[2] for i in garth_3d]
 
-fig = plt.figure(figsize=(10,5))
+fig = plt.figure(figsize=(20,10))
 ax = fig.add_subplot(111, projection='3d')
 ax.scatter(k3_x, k3_y, k3_z, c='b', s=60, label='Kendrick')
 ax.scatter(g3_x, g3_y, g3_z, c='red', s=60, label='Garth')
@@ -306,14 +315,6 @@ ax.legend()
 plt.show()
 ```
 
-
-![png](index_files/index_29_0.png)
-
-
-
-![png](index_files/index_29_1.png)
-
-
 Interesting! Take a crack at interpreting these graphs by answering the following question below:
 
 What does each graph mean? Do you find one graph more informative than the other? Do you think that this method shows us discernable differences between Kendrick Lamar songs and Garth Brooks songs?  Use the graphs and your understanding of TF-IDF to support your answer.  
@@ -322,7 +323,7 @@ Write your answer to this question below:
 
 
 ```python
-# Your answer here
+# Your Written Answer Here
 ```
 
 ### Conclusion
