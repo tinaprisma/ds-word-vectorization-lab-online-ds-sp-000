@@ -107,7 +107,7 @@ Tokenization is a required task for just about any Natural Language Processing (
 import nltk
 nltk.download('punkt')
 ``` 
-to download the Punkt sentence tokenizer.
+> to download the Punkt sentence tokenizer.
 
 Before we tokenize our songs, we'll do only a small manual bit of cleaning.  In the cell below, write a function that allows us to remove lines that have `['artist names']` in it, to ensure that our song files contain only lyrics that are actually in the song. For the lines that remain, make every word lowercase, remove newline characters `\n`, and any of the following punctuation marks: `",.'?!"`
 
